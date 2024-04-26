@@ -16,7 +16,7 @@ pipeline {
                 dir('C:\\Users\\kesavank\\Terraform with Jenkins'){
                     
                     
-
+                 bat 'terraform init'
                
                 bat 'terraform plan'
                bat 'terraform apply'
