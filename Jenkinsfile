@@ -13,17 +13,11 @@ pipeline {
         }
         stage('Run Terraform') {
             steps {
+                dir('C:\Program Files\Terraform'){
                 bat 'terraform init'
                 bat 'terraform plan'
-                // User confirmation for applying changes (optional)
-                //input {
-                   // message 'Apply Terraform changes?'
-                    //options {
-                       // yes 'Yes'
-                       // no 'No'
-                    //}
-                
-                bat 'terraform apply'
+               bat 'terraform apply'
+            }
             }
         }
     }
