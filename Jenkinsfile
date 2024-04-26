@@ -16,9 +16,9 @@ pipeline {
             steps {
                // dir('C:\\Users\\kesavank\\Terraform with Jenkins'){
                   
-    bat 'C:\Users\kesavank\Terraform\terraform init'
-    bat 'C:\Users\kesavank\Terraform\terraform plan'
-    bat 'C:\Users\kesavank\Terraform\terraform apply -auto-approve'
+    bat 'C:\\Users\kesavank\\Terraform\\terraform init'
+    bat 'C:\\Users\kesavank\\Terraform\\terraform plan'
+    bat 'C:\\Users\kesavank\\Terraform\\terraform apply -auto-approve'
 
 
                    }
