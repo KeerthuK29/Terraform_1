@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Run Terraform') {
             steps {
-                dir('Terraform'){
+                dir('C:\\Users\\kesavank\\Terraform with Jenkins'){
                     
                     
 
