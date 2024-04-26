@@ -15,11 +15,12 @@ pipeline {
             steps {
                 dir('C:\\Program Files\\Terraform'){
                      script {
-                        def tfFiles = findFiles(glob: '**/*.tf')
+                        def tfFiles = new File('.').listFiles().findAll { it.isFile() && it.name.endsWith('.tf') }
                         if (tfFiles.isEmpty()) {
                             error "No Terraform configuration files found"
                         }
-                     }
+                    }
+
                 bat 'terraform init'
                 bat 'terraform plan'
                bat 'terraform apply'
