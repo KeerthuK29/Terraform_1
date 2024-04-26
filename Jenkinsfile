@@ -19,6 +19,7 @@ pipeline {
                         if (tfFiles.isEmpty()) {
                             error "No Terraform configuration files found"
                         }
+                     }
                 bat 'terraform init'
                 bat 'terraform plan'
                bat 'terraform apply'
