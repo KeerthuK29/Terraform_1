@@ -13,14 +13,14 @@ pipeline {
         }
         stage('Run Terraform') {
             steps {
-                dir('C:\\Users\\kesavank\\Terraform with Jenkins'){
+               // dir('C:\\Users\\kesavank\\Terraform with Jenkins'){
                     
-                    
-                 sh 'terraform init'
+                  sh "terraform --version"  
+                // sh 'terraform init'
                
-                sh 'terraform plan'
-               sh 'terraform apply'
-            }
+               // sh 'terraform plan'
+              // sh 'terraform apply'
+          //  }
             }
         }
     }
