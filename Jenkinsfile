@@ -14,14 +14,17 @@ pipeline {
         }
         stage('Run Terraform') {
             steps {
-               // dir('C:\\Users\\kesavank\\Terraform with Jenkins'){
+                dir('C:\\Users\\kesavank\\Terraform'){
                   
-    bat 'C:\\Users\\kesavank\\Terraform\\terraform init'
-    bat 'C:\\Users\\kesavank\\Terraform\\terraform plan'
-    bat 'C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve'
-
+  //  bat 'C:\\Users\\kesavank\\Terraform\\terraform init'
+   // bat 'C:\\Users\\kesavank\\Terraform\\terraform plan'
+    //bat 'C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve'
+                        bat'terraform init'
+                    bat 'terraform plan'
+                    bat 'terrafrom apply'
 
                    }
+            }
                 // sh 'terraform init'
                
                // sh 'terraform plan'
