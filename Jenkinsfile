@@ -15,7 +15,9 @@ pipeline {
             steps {
                // dir('C:\\Users\\kesavank\\Terraform with Jenkins'){
                    script{ 
-                  sh "terraform --version"  
+                   sh "terraform init"
+                   sh "terraform plan"
+                   sh "terraform apply"  
                    }
                 // sh 'terraform init'
                
