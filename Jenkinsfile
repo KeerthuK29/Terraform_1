@@ -14,17 +14,11 @@ pipeline {
         stage('Run Terraform') {
             steps {
                // dir('C:\\Users\\kesavank\\Terraform with Jenkins'){
-                   script{ 
-                 withCredentials([[
-              $class: 'AmazonWebServicesCredentialsBinding',
-               accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-         // credentialsId: 'aws-access-key-id',
-           secretKeyVariable: '    AWS_SECRET_ACCESS_KEY'  
-]]) {    
+                  
     sh 'terraform init'
     sh 'terraform plan'
     sh 'terraform apply -auto-approve'
-}
+
 
                    }
                 // sh 'terraform init'
