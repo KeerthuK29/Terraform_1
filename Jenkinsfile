@@ -16,10 +16,10 @@ pipeline {
                 dir('C:\\Users\\kesavank\\Terraform with Jenkins'){
                     
                     
-                 bat 'terraform init'
+                 sh 'terraform init'
                
-                bat 'terraform plan'
-               bat 'terraform apply'
+                sh 'terraform plan'
+               sh 'terraform apply'
             }
             }
         }
