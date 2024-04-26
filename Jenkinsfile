@@ -21,7 +21,7 @@ pipeline {
     //bat 'C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve'
                         bat'terraform init'
                     bat 'terraform plan'
-                    bat 'terrafrom apply'
+                    bat 'terraform apply'
 
                    }
             }
