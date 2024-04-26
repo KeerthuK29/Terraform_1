@@ -15,7 +15,7 @@ pipeline {
             steps {
                // dir('C:\\Users\\kesavank\\Terraform with Jenkins'){
                    script{ 
-                   ithCredentials([[
+                 withCredentials([[
               $class: 'AmazonWebServicesCredentialsBinding',
                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
          // credentialsId: 'aws-access-key-id',
