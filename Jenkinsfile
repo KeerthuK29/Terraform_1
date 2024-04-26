@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Run Terraform') {
             steps {
-                dir('C:\Program Files\Terraform'){
+                dir('C:\\Program Files\\Terraform'){
                 bat 'terraform init'
                 bat 'terraform plan'
                bat 'terraform apply'
