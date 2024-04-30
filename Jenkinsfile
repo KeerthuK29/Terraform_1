@@ -29,6 +29,7 @@ pipeline {
       }
       steps {
             bat "C:\\Users\\kesavank\\Terraform\\terraform plan"
+      }
     }
     stage('Terraform Apply ') {
       when {
