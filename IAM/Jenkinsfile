@@ -8,14 +8,16 @@ pipeline {
   stages {
     stage('Checkout Code') {
       steps {
-        dir('C:\\Users\\kesavank\\Terraform'){
+      
         git branch: 'master', url:'https://github.com/KeerthuK29/Terraform-with-Jenkins.git'
         }
-    }
+    
     }
     stage('Terraform run'){
       steps{
+          dir('C:\\Users\\kesavank\\Terraform'){
         bat 'terraform init'
+      }
       }
     }
     stage('Terraform Action') {
@@ -23,17 +25,20 @@ pipeline {
         expression { return params.action == 'plan' }
       }
       steps {
+          dir('C:\\Users\\kesavank\\Terraform'){
         bat "terraform plan"
       }
+    }
     }
     stage('Terraform Apply ') {
       when {
         expression { return params.action == 'apply' }
       }
       steps {
+          dir('C:\\Users\\kesavank\\Terraform'){
         bat "terraform apply"
       }
     }
-    
+    }
   }
 }
