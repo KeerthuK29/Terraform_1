@@ -37,6 +37,5 @@ pipeline {
       steps {
           bat "C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve"
     }
-    }
   }
 }
