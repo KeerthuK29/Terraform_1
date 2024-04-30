@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('Checkout Code') {
       steps {
+        dir('C:\\Users\\kesavank\\Terraform')
         git branch: 'master', url:'https://github.com/KeerthuK29/Terraform-with-Jenkins.git'
       }
     }
