@@ -19,9 +19,7 @@ pipeline {
     }
     stage('Terraform run'){
       steps{
-        dir('C:\\Users\\kesavank\\Terraform'){
-          bat 'terraform init'
-        }
+          bat 'C:\\Users\\kesavank\\Terraform\\terraform init'
         
       }
     }
@@ -30,21 +28,14 @@ pipeline {
         expression { return params.action == 'plan' }
       }
       steps {
-          dir('C:\\Users\\kesavank\\Terraform'){
-            bat "terraform plan"
-          }
-        
-    }
+            bat "C:\\Users\\kesavank\\Terraform\\terraform plan"
     }
     stage('Terraform Apply ') {
       when {
         expression { return params.action == 'apply' }
       }
       steps {
-        dir('C:\\Users\\kesavank\\Terraform'){
-          bat "terraform apply -auto-approve"
-        }
-        
+          bat "C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve"
     }
     }
   }
