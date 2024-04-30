@@ -40,7 +40,7 @@ pipeline {
       }
       steps {
           dir('C:\\Users\\kesavank\\Terraform'){
-        bat "terraform apply"
+        bat "terraform apply auto-approve"
       }
     }
     }
