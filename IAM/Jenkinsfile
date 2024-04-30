@@ -28,7 +28,7 @@ pipeline {
       }
       steps {
           
-        bat "terraform plan"
+        bat "C:\\Users\\kesavank\\Terraform\\terraform plan"
     }
     }
     stage('Terraform Apply ') {
@@ -36,7 +36,7 @@ pipeline {
         expression { return params.action == 'apply' }
       }
       steps {
-        bat "terraform apply -auto-approve"
+        bat "C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve"
     }
     }
   }
