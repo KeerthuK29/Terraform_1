@@ -16,9 +16,9 @@ pipeline {
       
       steps {
         script{
-          def branch_name = params.Branch
+         
       
-          git branch:"branch_name", url:'https://github.com/KeerthuK29/Terraform-with-Jenkins.git'
+          git branch:"${params.Branch}", url:'https://github.com/KeerthuK29/Terraform-with-Jenkins.git'
         }
       }
     }
