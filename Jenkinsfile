@@ -13,21 +13,14 @@ pipeline {
 
   stages {
     stage('Checkout Code') {
-       when {
-        expression { return params.Branch == 'master' }
-      }
+      
       steps {
+        script{
+          def branch_name=params.Branch
       
-        git branch: 'master', url:'https://github.com/KeerthuK29/Terraform-with-Jenkins.git'
+          git branch:branch_name, url:'https://github.com/KeerthuK29/Terraform-with-Jenkins.git'
         }
-       when {
-        expression { return params.Branch == 'kk_branch' }
       }
-        steps {
-      
-        git branch: 'kk_branch', url:'https://github.com/KeerthuK29/Terraform-with-Jenkins.git'
-        }
-    
     }
     stage('Terraform Initialize'){
       steps{
