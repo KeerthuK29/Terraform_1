@@ -49,7 +49,7 @@ pipeline {
         expression { return params.action == 'destroy' }
       }
       steps {
-          bat 'C:\\Users\\kesavank\\Terraform\\terraform destroy'
+          bat 'C:\\Users\\kesavank\\Terraform\\terraform destroy -auto-approve'
     }
   }
 }
