@@ -2,6 +2,7 @@ pipeline {
   agent any
 
   parameters {
+    choice(name:'Branch',choices:['master','kk_branch'],description:'Choosing the Branch')
     choice(name: 'action', choices: ['plan', 'apply'], description: 'Terraform action to perform')
   }
    environment {
@@ -11,9 +12,19 @@ pipeline {
 
   stages {
     stage('Checkout Code') {
+       when {
+        expression { return params.Branch == 'master' }
+      }
       steps {
       
         git branch: 'master', url:'https://github.com/KeerthuK29/Terraform-with-Jenkins.git'
+        }
+       when {
+        expression { return params.action == 'kk_branch' }
+      }
+        steps {
+      
+        git branch: 'kk_branch', url:'https://github.com/KeerthuK29/Terraform-with-Jenkins.git'
         }
     
     }
