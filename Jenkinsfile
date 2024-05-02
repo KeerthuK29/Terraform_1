@@ -28,13 +28,13 @@ pipeline {
         }
     
     }
-    stage('Terraform run'){
+    stage('Terraform Initialize'){
       steps{
           bat 'C:\\Users\\kesavank\\Terraform\\terraform init'
         
       }
     }
-    stage('Terraform Action') {
+    stage('Terraform Plan') {
       when {
         expression { return params.action == 'plan' }
       }
