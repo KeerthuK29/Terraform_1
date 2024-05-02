@@ -20,7 +20,7 @@ pipeline {
         git branch: 'master', url:'https://github.com/KeerthuK29/Terraform-with-Jenkins.git'
         }
        when {
-        expression { return params.action == 'kk_branch' }
+        expression { return params.Branch == 'kk_branch' }
       }
         steps {
       
