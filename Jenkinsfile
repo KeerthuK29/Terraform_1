@@ -3,7 +3,7 @@ pipeline {
 
   parameters {
     choice(name:'Branch',choices:['master','kk_branch'],description:'Choosing the Branch')
-    choice(name: 'action', choices: ['plan', 'apply'], description: 'Terraform action to perform')
+    choice(name: 'action', choices: ['plan', 'apply','destroy'], description: 'Terraform action to perform')
   }
    environment {
         AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
@@ -39,7 +39,7 @@ pipeline {
         expression { return params.action == 'plan' }
       }
       steps {
-            bat "C:\\Users\\kesavank\\Terraform\\terraform plan"
+            bat 'C:\\Users\\kesavank\\Terraform\\terraform plan'
       }
     }
     stage('Terraform Apply ') {
@@ -47,7 +47,15 @@ pipeline {
         expression { return params.action == 'apply' }
       }
       steps {
-          bat "C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve"
+          bat 'C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve'
+    }
+  }
+     stage('Terraform Destroy ') {
+      when {
+        expression { return params.action == 'destroy' }
+      }
+      steps {
+          bat 'C:\\Users\\kesavank\\Terraform\\terraform destroy'
     }
   }
 }
