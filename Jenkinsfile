@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   parameters {
-    choice(name:'Branch',choices:['keerthu-branch'],description:'Select the Branch')
+    choice(name:'Branch',choices:['branch_1'],description:'Select the Branch')
     choice(name: 'action', choices: ['plan', 'apply','destroy'], description: 'Terraform action to perform')
   }
    environment {
@@ -18,7 +18,7 @@ pipeline {
         script{
          
       
-          git branch:"${params.Branch}", url:'https://github.com/KeerthuK29/Jenkins_Terraform_Integration.git'
+          git branch:"${params.Branch}", url:'https://github.com/KeerthuK29/Terraform_1.git'
         }
       }
     }
