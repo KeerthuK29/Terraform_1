@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   parameters {
-    choice(name:'Branch',choices:['kk-branch'],description:'Select the Branch')
+    choice(name:'Branch',choices:['keerthu-branch'],description:'Select the Branch')
     choice(name: 'action', choices: ['plan', 'apply','destroy'], description: 'Terraform action to perform')
   }
    environment {
