@@ -34,22 +34,73 @@ pipeline {
             bat "C:\\Users\\kesavank\\Terraform\\terraform plan"
       }
     }
-    stage('Terraform Apply ') {
-      when {
-        expression { return params.action == 'apply' }
-      }
-      steps {
-          bat "C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve"
-    }
-  }
-  stage('Terraform destroy'){
-    when{
-        expression {return params.action == 'destroy'}
+    stage('Terraform Apply Confirmation') {
+            when {
+                expression { return params.action == 'apply' }
+            }
+            steps {
+                script {
+                    def userInput = input(
+                        id: 'ApplyTerraformChanges',
+                        message: 'Are you sure you want to apply Terraform changes? ',
+                        parameters: [
+                            [$class: 'BooleanParameterDefinition',
+                             name: 'Proceed',
+                             defaultValue: false] 
+                        ]
+                    )
 
+                    if (userInput) {
+                        echo 'Applying Terraform changes...'
+                    } else {
+                        echo 'Terraform apply aborted by user.'
+                        currentBuild.result = 'ABORTED'
+                    }
+                }
+            }
+        }
+        stage('Terraform Apply') {
+            when {
+                expression { return params.action == 'apply' && userInput } 
+            }
+            steps {
+                bat 'terraform apply -auto-approve'
+            }
+        }
+        stage('Terraform Destroy Confirmation') {
+            when {
+                expression { return params.action == 'destroy' }
+            }
+            steps {
+                script {
+                    def userInput = input(
+                        id: 'DestroyTerraformResources',
+                        message: 'Are you sure you want to destroy Terraform resources? ',
+                        parameters: [
+                            [$class: 'BooleanParameterDefinition',
+                             name: 'Proceed',
+                             defaultValue: false] 
+                        ]
+                    )
+
+                    if (userInput) {
+                        echo 'Destroying Terraform resources...'
+                    } else {
+                        echo 'Terraform destroy aborted by user.'
+                        currentBuild.result = 'ABORTED'
+                    }
+                }
+            }
+        }
+        stage('Terraform Destroy') {
+            when {
+                expression { return params.action == 'destroy' && userInput } 
+            }
+            steps {
+                bat 'terraform destroy -auto-approve'
+            }
+        }
     }
-    steps{
-        bat "C:\\Users\\kesavank\\Terraform\\terraform destroy -auto-approve"
-    }
-  }
 }
-}
+    
+ 
