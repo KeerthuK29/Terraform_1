@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   parameters {
-    choice(name:'branch',choices:['branch_1','branch_2'],description:'Select the branch')
+    choice(name:'Branch',choices:['branch_1','branch_2'],description:'Select the branch')
     choice(name: 'action', choices: ['plan', 'apply','destroy'], description: 'Terraform action to perform')
   }
    environment {
@@ -13,9 +13,11 @@ pipeline {
   stages {
     stage('Checkout Code') {
       steps {
+        script{
       
-        git branch: " ${params.branch}" , url:'https://github.com/KeerthuK29/Terraform_1.git'
+        git branch: " ${params.Branch}" , url:'https://github.com/KeerthuK29/Terraform_1.git'
         }
+      }
     
     }
     stage('Terraform run'){
