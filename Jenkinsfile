@@ -3,7 +3,7 @@ pipeline {
 
   parameters {
     choice(name:'Branch',choices:['branch_1','branch_2'],description:'Select the Branch')
-    choice(name: 'action', choices: ['plan', 'apply','destroy'], description: 'Terraform action to perform')
+    choice(name: 'action', choices: ['plan','apply','destroy'], description: 'Terraform action to perform')
   }
    environment {
         AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
@@ -35,9 +35,34 @@ pipeline {
             bat 'C:\\Users\\kesavank\\Terraform\\terraform plan'
       }
     }
+    stage('Terraform Apply Confirmation') {
+            when {
+                expression { return params.action == 'apply' }
+            }
+            steps {
+                script {
+                    def userInput = input(
+                        id: 'ApplyTerraformChanges',
+                        message: 'Are you sure you want to apply Terraform changes?',
+                        parameters: [
+                            [$class: 'BooleanParameterDefinition',
+                             name: 'Proceed',
+                             defaultValue: false] 
+                        ]
+                    )
+
+                    if (userInput) {
+                        echo 'Applying Terraform changes...'
+                    } else {
+                        echo 'Terraform apply aborted by user.'
+                        currentBuild.result = 'ABORTED'
+                    }
+                }
+            }
+        }
     stage('Terraform Apply ') {
       when {
-        expression { return params.action == 'apply' }
+        expression { return params.action == 'apply' && userInput}
       }
       steps {
           bat "C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve"
