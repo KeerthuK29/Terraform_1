@@ -64,9 +64,29 @@ pipeline {
           bat "C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve"
     }
   }
+  stage('Terraform destroy confirmation'){
+    when{
+      expression {return params.action == 'destroy'}
+    }
+    steps{
+      script{
+        def userInput=input(
+          id:'Destroytheresources',
+          message:'Are you sure you want to destroy Terraform resources?',
+          parameters:[
+            [$class: 'BooleanParameterDefinition',
+             name:'Proceed',
+             defaultValue:false]
+          ]
+        
+        )
+        env.USER_INPUT=userInput.toString()
+      }
+    }
+  }
   stage('Terraform destroy'){
     when{
-        expression {return params.action == 'destroy'}
+        expression { return params.action == 'destroy' && env.USER_INPUT == 'true'}
 
     }
     steps{
