@@ -50,19 +50,15 @@ pipeline {
                              defaultValue: false] 
                         ]
                     )
+                    env.USER_INPUT = userInput.toString()
 
-                    if (userInput) {
-                        echo 'Applying Terraform changes...'
-                    } else {
-                        echo 'Terraform apply aborted by user.'
-                        currentBuild.result = 'ABORTED'
-                    }
+                    
                 }
             }
         }
-    stage('Terraform Apply ') {
+    stage('Terraform Apply') {
       when {
-        expression { return params.action == 'apply' && userInput }
+        expression {return params.action == 'apply' && env.USER_INPUT == 'true'}
       }
       steps {
           bat "C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve"
