@@ -14,7 +14,7 @@ pipeline {
     stage('Checkout Code') {
       steps {
       
-        git branch: " ${params.Branch}" , url:'https://github.com/KeerthuK29/Jenkins_Terraform_Integration.git'
+        git branch: " ${params.branch}" , url:'https://github.com/KeerthuK29/Terraform_1.git'
         }
     
     }
