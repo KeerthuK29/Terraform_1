@@ -62,7 +62,7 @@ pipeline {
         }
     stage('Terraform Apply ') {
       when {
-        expression { return params.action == 'apply' && userInput}
+        expression { return params.action == 'apply' && userInput }
       }
       steps {
           bat "C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve"
