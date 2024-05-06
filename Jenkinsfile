@@ -15,7 +15,7 @@ pipeline {
       steps {
         script{
       
-        git branch: " ${params.Branch}" , url:'https://github.com/KeerthuK29/Terraform_1.git'
+        git branch:" ${params.Branch}" , url:'https://github.com/KeerthuK29/Terraform_1.git'
         }
       }
     
