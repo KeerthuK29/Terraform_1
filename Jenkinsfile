@@ -4,6 +4,7 @@ pipeline {
   parameters {
     choice(name:'Branch',choices:['branch_1','branch_2'],description:'Select the Branch')
     choice(name: 'action', choices: ['plan','apply','destroy'], description: 'Terraform action to perform')
+    booleanParam(name:'ApplyApproval',defaultValue:false,description:'Whether confirming the Apply')
   }
    environment {
         AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
@@ -34,7 +35,17 @@ pipeline {
         bat 'C:\\Users\\kesavank\\Terraform\\terraform plan'
       }
       else if (params.action == 'apply'){
-         def userInput = input(
+        if(params.ApplyApproval ){
+          bat 'C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve'
+        }
+      }
+      }
+      }
+    }
+  }
+}
+
+        /* def userInput = input(
                         id: 'ApplyTerraformChanges',
                         message: 'Are you sure you want to apply Terraform changes?',
                         parameters: [
@@ -53,7 +64,7 @@ pipeline {
     }
     }
   }
-}
+}*/
 
         
       
