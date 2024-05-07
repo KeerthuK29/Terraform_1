@@ -5,7 +5,7 @@ pipeline {
     choice(name:'Branch',choices:['branch_1','branch_2'],description:'Select the Branch')
     choice(name: 'action', choices: ['plan','apply','destroy'], description: 'Terraform action to perform')
     booleanParam(name:'ApplyApproval',defaultValue:false,description:'Are you confirming terraform apply')
-     booleanParam(name:'DestroyApproval',defaultValue:false,description:'Are you confirming terraform destroy')
+    booleanParam(name:'DestroyApproval',defaultValue:false,description:'Are you confirming terraform destroy')
   }
    environment {
         AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
@@ -36,11 +36,11 @@ pipeline {
         bat 'C:\\Users\\kesavank\\Terraform\\terraform plan'
       }
       else if (params.action == 'apply'){
-        if(params.ApplyApproval ){
+        if(params.ApplyApproval){
           bat 'C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve'
         }
       }
-      else(params.action == 'destroy'){
+      else if (params.action == 'destroy'){
         if(params.DestroyApproval){
           bat 'C:\\Users\\kesavank\\Terraform\\terraform destroy -auto-approve'
         }
