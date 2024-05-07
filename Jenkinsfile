@@ -33,7 +33,7 @@ pipeline {
       if(params.action == 'plan'){
         bat 'C:\\Users\\kesavank\\Terraform\\terraform plan'
       }
-      else (params.action == 'apply'){
+      else if (params.action == 'apply'){
          def userInput = input(
                         id: 'ApplyTerraformChanges',
                         message: 'Are you sure you want to apply Terraform changes?',
@@ -44,7 +44,7 @@ pipeline {
                         ]
                     )
                     env.USER_INPUT = userInput.toString()
-                    if (env.USER_INPUT && ${params.action} == 'true') {
+                    if (env.USER_INPUT == 'true') {
                               bat 'C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve'
                     } 
         
