@@ -34,7 +34,7 @@ pipeline {
       steps {
             bat 'C:\\Users\\kesavank\\Terraform\\terraform plan'
       }
-    }
+    
     stage('Terraform Apply Confirmation') {
             when {
                 expression { return params.action == 'apply' }
@@ -93,5 +93,6 @@ pipeline {
         bat "C:\\Users\\kesavank\\Terraform\\terraform destroy -auto-approve"
     }
   }
+    }
 }
 }
