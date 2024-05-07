@@ -28,6 +28,7 @@ pipeline {
       }
     }
     stage('Terraform Run') {
+      steps{
       script{
       if(params.action == 'plan'){
         bat 'C:\\Users\\kesavank\\Terraform\\terraform plan'
@@ -49,6 +50,7 @@ pipeline {
         
       }
       }
+    }
     }
   }
 }
