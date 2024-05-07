@@ -27,15 +27,39 @@ pipeline {
         
       }
     }
-    stage('Terraform Plan') {
-      when {
-        expression { return params.action == 'plan' }
+    stage('Terraform Run') {
+      script{
+      if(params.action == 'plan'){
+        bat 'C:\\Users\\kesavank\\Terraform\\terraform plan'
       }
-      steps {
-            bat 'C:\\Users\\kesavank\\Terraform\\terraform plan'
+      else (params.action == 'apply'){
+         def userInput = input(
+                        id: 'ApplyTerraformChanges',
+                        message: 'Are you sure you want to apply Terraform changes?',
+                        parameters: [
+                            [$class: 'BooleanParameterDefinition',
+                             name: 'Proceed',
+                             defaultValue: false] 
+                        ]
+                    )
+                    env.USER_INPUT = userInput.toString()
+                    if (env.USER_INPUT && params.action == 'true') {
+                              bat 'C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve'
+                    } 
+        
       }
+      }
+    }
+  }
+}
+
+        
+      
+      /*steps {
+            //bat 'C:\\Users\\kesavank\\Terraform\\terraform plan'
+      //}
     
-    stage('Terraform Apply Confirmation') {
+    //stage('Terraform Apply Confirmation') {
             when {
                 expression { return params.action == 'apply' }
             }
@@ -94,5 +118,5 @@ pipeline {
     }
   }
     }
-}
-}
+
+    
