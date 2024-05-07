@@ -44,7 +44,7 @@ pipeline {
                         ]
                     )
                     env.USER_INPUT = userInput.toString()
-                    if (env.USER_INPUT && params.action == 'true') {
+                    if (env.USER_INPUT && ${params.action} == 'true') {
                               bat 'C:\\Users\\kesavank\\Terraform\\terraform apply -auto-approve'
                     } 
         
