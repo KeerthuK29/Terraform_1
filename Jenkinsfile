@@ -117,6 +117,6 @@ pipeline {
         bat "C:\\Users\\kesavank\\Terraform\\terraform destroy -auto-approve"
     }
   }
-    }
+    }*/
 
     
